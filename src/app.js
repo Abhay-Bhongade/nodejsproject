@@ -1,21 +1,22 @@
-const http = require('http');
-const express = require('express');
+import express, { json } from "express"
+import cookieParser from "cookie-parser";
+import cors from "cors";
+
+
+
 
 const app = express();
 
-app.use((req, res, next) => {
-    console.log("Came in first middleware", req.url, req.method);
-    next();
-});
 
-app.use((req, res, next) => {
-    console.log("Came in second middleware", req.url, req.method);
-    res.send("<h1>Hello from the server!</h1>"); // ✅ Send a response
-});
+app.use(cors({
+    origin:process.env.CORS_ORIGIN,
+    credentials:true
+}))
+
+app.use(express.json({limit:"16kb"}))
+app.use(express.urlencoded({extended:true,limit:"16kb"}));
+app.use(express.static("public"))
+app.use(cookieParser());
 
 
-const PORT = 3002;
-
-app.listen(PORT, () => {
-    console.log(`Server is listening at http://localhost:${PORT}/`);
-});
+export default app;
