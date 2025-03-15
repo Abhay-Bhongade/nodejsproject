@@ -9,26 +9,26 @@ const UserSchema = new Schema({
         unique:true,
         index:true,
         lowercase:true,
-        trim:true()
+        trim:true
     },
     email:{
         type:String,
         required:true,
         unique:true,
         lowercase:true,
-        trim:true()
+        trim:true
     },
     fullName:{
         type:String,
         required:true,
         lowercase:true,
-        trim:true()
+        trim:true
     },
     avatar:{
         type:String, //store to cloudanary
         required:true,
         lowercase:true,
-        trim:true()
+        trim:true
     },
     coverImage:{
         type:String,
